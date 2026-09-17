@@ -18,6 +18,9 @@ export function Navbar() {
   const ctaLabel = data.header?.ctaLabel ?? "Start a project";
   const ctaLink = data.header?.ctaLink ?? "/contact";
 
+  const [logoErr, setLogoErr] = useState(false);
+  const logoUrl = !logoErr ? (data.global.headerLogo || data.global.logo) : "";
+
   return (
     <>
       {data.global.announcement.enabled && (
@@ -42,8 +45,13 @@ export function Navbar() {
       >
         <div className="mx-auto flex w-full max-w-[1500px] items-center justify-between px-6 md:px-10">
           <Link to="/" className="group flex items-center gap-2" data-cursor="hover">
-            {(data.global.headerLogo || data.global.logo) ? (
-              <img src={data.global.headerLogo || data.global.logo} alt={data.global.siteName} className="h-8 w-auto md:h-10 object-contain transition-transform duration-500 group-hover:-translate-y-[2px]" />
+            {logoUrl ? (
+              <img
+                src={logoUrl}
+                alt={data.global.siteName}
+                onError={() => setLogoErr(true)}
+                className="h-8 w-auto md:h-10 object-contain transition-transform duration-500 group-hover:-translate-y-[2px]"
+              />
             ) : (
               <span className="font-display text-2xl font-bold tracking-tight">
                 {data.global.siteName.split(" ").map((w, i, arr) => (

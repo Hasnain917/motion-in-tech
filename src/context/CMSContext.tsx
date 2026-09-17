@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import heroVideoAsset from "@/assets/hero-bg.mp4.asset.json";
+import heroPoster from "@/assets/hero-poster.jpg";
 import projectHelios from "@/assets/project-helios.jpg";
 import projectOrbit from "@/assets/project-orbit.jpg";
 import projectNova from "@/assets/project-nova.jpg";
@@ -191,12 +191,35 @@ const defaultData: CMSData = {
   ],
   animateCounters: true,
   testimonials: [
-    { id: uid(), name: "Elena Marsh", role: "VP Product", company: "Helios Bank", quote: "Motion In Tech delivered a product that genuinely changed how our customers feel about banking. Cinematic, fast and rigorously engineered.", photo: "https://i.pravatar.cc/200?img=47", rating: 5 },
-    { id: uid(), name: "Daniel Okafor", role: "CTO", company: "Orbit Mobility", quote: "The most senior engineering team we've ever worked with. They ship.", photo: "https://i.pravatar.cc/200?img=12", rating: 5 },
-    { id: uid(), name: "Mira Tanaka", role: "Founder", company: "Nova Studios", quote: "Every detail considered. Every interaction intentional. Award-tier work.", photo: "https://i.pravatar.cc/200?img=32", rating: 5 },
+    {
+      id: uid(),
+      name: "Elena Rostova",
+      role: "VP of Product",
+      company: "Nova Technologies",
+      quote: "Motion In Tech delivered our flagship platform in 14 weeks. The craft and performance are unmatched.",
+      photo: teamLina,
+      rating: 5,
+    },
+    {
+      id: uid(),
+      name: "David Chen",
+      role: "Founder & CTO",
+      company: "Helios Grid",
+      quote: "They don't just write code — they think like product owners. Our user retention doubled post-launch.",
+      photo: teamAris,
+      rating: 5,
+    },
+    {
+      id: uid(),
+      name: "Sarah Jenkins",
+      role: "Chief Digital Officer",
+      company: "Atlas Mobility",
+      quote: "The cleanest engineering architecture and design system we've ever had the pleasure of adopting.",
+      photo: teamMarcus,
+      rating: 5,
+    },
   ],
   process: [
-    { id: uid(), title: "Discovery", description: "We immerse in your business, users and constraints — and challenge the brief." },
     { id: uid(), title: "Strategy", description: "Roadmaps, architecture decisions and a measurable definition of done." },
     { id: uid(), title: "Design", description: "Design systems and prototypes that are already production-aware." },
     { id: uid(), title: "Development", description: "Senior engineers, weekly releases, ruthless code quality." },
@@ -234,9 +257,9 @@ const defaultData: CMSData = {
     keywords: "software agency, web development, mobile apps, UI UX, ERP, IT consulting",
   },
   global: {
-    logo: "/__l5e/assets-v1/1700d437-881b-40ee-9d0f-f8f4c3164ffe/brand-logo-v3.png",
-    headerLogo: "/__l5e/assets-v1/1700d437-881b-40ee-9d0f-f8f4c3164ffe/brand-logo-v3.png",
-    footerLogo: "/__l5e/assets-v1/1700d437-881b-40ee-9d0f-f8f4c3164ffe/brand-logo-v3.png",
+    logo: "/brand-logo.svg",
+    headerLogo: "/brand-logo.svg",
+    footerLogo: "/brand-logo.svg",
     siteName: "Motion In Tech",
     accent: "#00FFD1",
     footerCopy: "© 2025 Motion In Tech. All rights reserved.",
@@ -287,6 +310,11 @@ const CMSContext = createContext<CMSContextValue | null>(null);
 
 const STORAGE_KEY = "mit-cms-v1";
 
+function cleanUrl(url?: string): string {
+  if (!url || url.includes("/__l5e/")) return "/brand-logo.svg";
+  return url;
+}
+
 export function CMSProvider({ children }: { children: ReactNode }) {
   const [data, setDataState] = useState<CMSData>(defaultData);
   const [hydrated, setHydrated] = useState(false);
@@ -296,10 +324,17 @@ export function CMSProvider({ children }: { children: ReactNode }) {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const parsed = JSON.parse(raw);
+        const globalParsed = parsed.global ?? {};
         setDataState({
           ...defaultData,
           ...parsed,
-          global: { ...defaultData.global, ...(parsed.global ?? {}) },
+          global: {
+            ...defaultData.global,
+            ...globalParsed,
+            logo: cleanUrl(globalParsed.logo),
+            headerLogo: cleanUrl(globalParsed.headerLogo),
+            footerLogo: cleanUrl(globalParsed.footerLogo),
+          },
         });
       }
     } catch {}

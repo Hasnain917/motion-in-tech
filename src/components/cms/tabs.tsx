@@ -365,27 +365,35 @@ export function GlobalTab() {
             <div className="mb-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Header Context</div>
             <div className="flex items-center gap-3 rounded border border-border bg-background px-4 py-3">
               {(g.headerLogo || g.logo) ? (
-                <img src={g.headerLogo || g.logo} alt={g.siteName} className="h-8 w-auto object-contain" />
-              ) : (
-                <span className="font-display text-2xl font-bold tracking-tight">
-                  {g.siteName.split(" ").map((w, i, arr) => (
-                    <span key={i} className="inline-block">{w}{i < arr.length - 1 ? "\u00A0" : ""}</span>
-                  ))}
-                  <span className="text-neon" style={{ color: "var(--color-neon)" }}>.</span>
-                </span>
-              )}
+                <img
+                  src={g.headerLogo || g.logo}
+                  alt={g.siteName}
+                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                  className="h-8 w-auto object-contain"
+                />
+              ) : null}
+              <span className="font-display text-2xl font-bold tracking-tight">
+                {g.siteName.split(" ").map((w, i, arr) => (
+                  <span key={i} className="inline-block">{w}{i < arr.length - 1 ? "\u00A0" : ""}</span>
+                ))}
+                <span className="text-neon" style={{ color: "var(--color-neon)" }}>.</span>
+              </span>
             </div>
           </div>
           <div>
             <div className="mb-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Footer Context</div>
             <div className="rounded border border-border bg-background px-4 py-5">
               {(g.footerLogo || g.logo) ? (
-                <img src={g.footerLogo || g.logo} alt={g.siteName} className="h-16 w-auto object-contain" />
-              ) : (
-                <div className="font-display text-5xl font-bold tracking-tight">
-                  {g.siteName}<span className="text-neon" style={{ color: "var(--color-neon)" }}>.</span>
-                </div>
-              )}
+                <img
+                  src={g.footerLogo || g.logo}
+                  alt={g.siteName}
+                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                  className="h-16 w-auto object-contain"
+                />
+              ) : null}
+              <div className="font-display text-5xl font-bold tracking-tight">
+                {g.siteName}<span className="text-neon" style={{ color: "var(--color-neon)" }}>.</span>
+              </div>
             </div>
           </div>
         </div>

@@ -4,14 +4,22 @@ import { Github, Instagram, Linkedin, Twitter } from "lucide-react";
 export function Footer() {
   const { data } = useCMS();
   const s = data.contact.socials;
+  const [logoErr, setLogoErr] = useState(false);
+  const logoUrl = !logoErr ? (data.global.footerLogo || data.global.logo) : "";
+
   return (
     <footer className="noise-bg relative overflow-hidden border-t border-border bg-surface" style={{ background: "var(--color-surface)" }}>
       <div className="grid-bg pointer-events-none absolute inset-0 opacity-40" />
       <div className="relative mx-auto w-full max-w-[1500px] px-6 py-16 md:px-10 md:py-20">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-12 md:gap-12">
           <div className="sm:col-span-2 md:col-span-5">
-            {(data.global.footerLogo || data.global.logo) ? (
-              <img src={data.global.footerLogo || data.global.logo} alt={data.global.siteName} className="h-16 w-auto md:h-20 object-contain" />
+            {logoUrl ? (
+              <img
+                src={logoUrl}
+                alt={data.global.siteName}
+                onError={() => setLogoErr(true)}
+                className="h-16 w-auto md:h-20 object-contain"
+              />
             ) : (
               <div className="font-display text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
                 {data.global.siteName}<span className="text-neon" style={{ color: "var(--color-neon)" }}>.</span>
