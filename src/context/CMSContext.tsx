@@ -115,9 +115,9 @@ const defaultData: CMSData = {
     subHeadline: "Motion In Tech — Where Code Meets Craft.",
     cta1: { label: "See Our Work", link: "#work" },
     cta2: { label: "Get In Touch", link: "#contact" },
-    backgroundType: "video",
-    backgroundVideo: heroVideoAsset.url,
-    backgroundImage: "",
+    backgroundType: "image",
+    backgroundVideo: "",
+    backgroundImage: heroPoster,
     marquee: [
       "Web Development",
       "Mobile Apps",
