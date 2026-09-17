@@ -53,7 +53,7 @@ export function Process() {
           />
           {data.process.map((p, i) => (
             <div key={p.id} data-step className="relative grid grid-cols-1 gap-2 border-b border-border py-10 md:grid-cols-[100px_1fr_2fr] md:items-baseline md:gap-12">
-              <span className="absolute -left-[34px] top-12 h-3 w-3 rounded-full border-2 border-background bg-neon md:-left-[34px]" style={{ background: "var(--color-neon)" }} />
+              <span className="absolute -left-[38px] top-12 h-3 w-3 -translate-y-1/2 rounded-full border-2 border-background bg-neon md:-left-[62px]" style={{ background: "var(--color-neon)" }} />
               <span className="font-mono text-[11px] uppercase tracking-widest text-neon" style={{ color: "var(--color-neon)" }}>STEP / {String(i + 1).padStart(2, "0")}</span>
               <h3 className="font-display text-3xl font-bold tracking-tight md:text-4xl">{p.title}</h3>
               <p className="max-w-md text-muted-foreground">{p.description}</p>
