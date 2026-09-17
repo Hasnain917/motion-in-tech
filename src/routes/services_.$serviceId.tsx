@@ -174,7 +174,7 @@ export function ServiceDetailPage() {
               {relatedProjects.map((p) => (
                 <Link
                   key={p.id}
-                  to="/work_/$projectId"
+                  to="/work/$projectId"
                   params={{ projectId: p.id }}
                   data-cursor="view"
                   className="group relative aspect-[16/10] overflow-hidden border border-border bg-elevated block"
@@ -204,7 +204,7 @@ export function ServiceDetailPage() {
       <section className="border-y border-border bg-surface py-12" style={{ background: "var(--color-surface)" }}>
         <div className="mx-auto flex w-full max-w-[1500px] flex-col justify-between gap-6 px-6 sm:flex-row sm:items-center md:px-10">
           <Link
-            to="/services_/$serviceId"
+            to="/services/$serviceId"
             params={{ serviceId: prevService.id }}
             data-cursor="hover"
             className="group flex flex-col"
@@ -226,7 +226,7 @@ export function ServiceDetailPage() {
           </Link>
 
           <Link
-            to="/services_/$serviceId"
+            to="/services/$serviceId"
             params={{ serviceId: nextService.id }}
             data-cursor="hover"
             className="group flex flex-col text-right"

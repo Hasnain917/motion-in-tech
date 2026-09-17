@@ -38,7 +38,7 @@ function ServicesPage() {
               return (
                 <Link
                   key={s.id}
-                  to="/services_/$serviceId"
+                  to="/services/$serviceId"
                   params={{ serviceId: s.id }}
                   data-cursor="explore"
                   className="group relative flex flex-col justify-between overflow-hidden border border-border bg-elevated p-8 transition-all hover:border-neon/50 hover:-translate-y-1 md:p-12 block"

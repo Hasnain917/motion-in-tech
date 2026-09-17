@@ -59,7 +59,7 @@ function WorkPage() {
             {list.map((p, i) => (
               <Link
                 key={p.id}
-                to="/work_/$projectId"
+                to="/work/$projectId"
                 params={{ projectId: p.id }}
                 data-cursor="view"
                 className="group relative block aspect-[4/3] overflow-hidden border border-border bg-elevated transition-all duration-500 hover:border-neon/50"

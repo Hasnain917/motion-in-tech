@@ -162,7 +162,7 @@ export function Portfolio() {
           {projects.map((p, i) => (
             <Link
               key={p.id}
-              to="/work_/$projectId"
+              to="/work/$projectId"
               params={{ projectId: p.id }}
               data-card
               data-cursor="view"

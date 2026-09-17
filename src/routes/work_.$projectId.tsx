@@ -246,7 +246,7 @@ export function ProjectDetailPage() {
       <section className="border-y border-border bg-surface py-12" style={{ background: "var(--color-surface)" }}>
         <div className="mx-auto flex w-full max-w-[1500px] flex-col justify-between gap-6 px-6 sm:flex-row sm:items-center md:px-10">
           <Link
-            to="/work_/$projectId"
+            to="/work/$projectId"
             params={{ projectId: prevProject.id }}
             data-cursor="hover"
             className="group flex flex-col"
@@ -268,7 +268,7 @@ export function ProjectDetailPage() {
           </Link>
 
           <Link
-            to="/work_/$projectId"
+            to="/work/$projectId"
             params={{ projectId: nextProject.id }}
             data-cursor="hover"
             className="group flex flex-col text-right"

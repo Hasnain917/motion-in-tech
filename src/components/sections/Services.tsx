@@ -61,7 +61,7 @@ export function Services() {
           return (
             <Link
               key={s.id}
-              to="/services_/$serviceId"
+              to="/services/$serviceId"
               params={{ serviceId: s.id }}
               data-cursor="explore"
               className="group relative flex h-[64vh] max-h-[600px] min-h-[440px] w-[86vw] shrink-0 flex-col overflow-hidden border border-border bg-elevated p-6 transition-all hover:border-neon/50 hover:-translate-y-1 md:w-[460px] md:p-8 block"
