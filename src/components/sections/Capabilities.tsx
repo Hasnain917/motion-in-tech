@@ -35,28 +35,33 @@ export function Capabilities() {
 
         const inner = card.querySelector<HTMLElement>("[data-inner]");
         const glow = card.querySelector<HTMLElement>("[data-glow]");
-        if (!inner) return;
-
+        let r = card.getBoundingClientRect();
+        const onEnter = () => {
+          r = card.getBoundingClientRect();
+        };
         const onMove = (e: MouseEvent) => {
-          const r = card.getBoundingClientRect();
-          const x = (e.clientX - r.left) / r.width - 0.5;
-          const y = (e.clientY - r.top) / r.height - 0.5;
+          const w = r.width || 300;
+          const h = r.height || 400;
+          const x = (e.clientX - r.left) / w - 0.5;
+          const y = (e.clientY - r.top) / h - 0.5;
           gsap.to(inner, {
             rotateY: x * 14,
             rotateX: -y * 14,
             transformPerspective: 900,
             duration: 0.5,
             ease: "power3.out",
+            overwrite: "auto",
           });
           if (glow) {
             glow.style.background = `radial-gradient(420px circle at ${e.clientX - r.left}px ${e.clientY - r.top}px, color-mix(in oklab, var(--color-neon) 35%, transparent), transparent 60%)`;
           }
         };
         const onLeave = () => {
-          gsap.to(inner, { rotateY: 0, rotateX: 0, duration: 0.7, ease: "power3.out" });
+          gsap.to(inner, { rotateY: 0, rotateX: 0, duration: 0.7, ease: "power3.out", overwrite: "auto" });
           if (glow) glow.style.background = "transparent";
         };
-        card.addEventListener("mousemove", onMove);
+        card.addEventListener("mouseenter", onEnter);
+        card.addEventListener("mousemove", onMove, { passive: true });
         card.addEventListener("mouseleave", onLeave);
       });
 

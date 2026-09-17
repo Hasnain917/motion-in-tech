@@ -1,72 +1,115 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export function Cursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
-  const [label, setLabel] = useState<string>("");
-  const [hover, setHover] = useState(false);
-  const [visible, setVisible] = useState(false);
+  const labelRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(pointer: coarse)").matches) return;
 
     let mx = -100, my = -100, rx = -100, ry = -100;
+    let isVisible = false;
+    let currentHover = false;
+    let currentLabel = "";
     let raf = 0;
 
+    const dot = dotRef.current;
+    const ring = ringRef.current;
+    const labelEl = labelRef.current;
+
+    if (!dot || !ring) return;
+
     const onMove = (e: MouseEvent) => {
-      mx = e.clientX; my = e.clientY;
-      if (!visible) setVisible(true);
+      mx = e.clientX;
+      my = e.clientY;
+
+      if (!isVisible) {
+        isVisible = true;
+        dot.style.opacity = "1";
+        ring.style.opacity = "1";
+      }
+
       const t = e.target as HTMLElement | null;
       const cursorEl = t?.closest("[data-cursor]") as HTMLElement | null;
+      const nextHover = !!cursorEl;
+      let nextLabel = "";
       if (cursorEl) {
-        setHover(true);
         const tag = cursorEl.getAttribute("data-cursor");
-        setLabel(tag === "view" ? "VIEW" : tag === "explore" ? "EXPLORE" : "");
-      } else {
-        setHover(false);
-        setLabel("");
+        nextLabel = tag === "view" ? "VIEW" : tag === "explore" ? "EXPLORE" : "";
+      }
+
+      if (nextHover !== currentHover || nextLabel !== currentLabel) {
+        currentHover = nextHover;
+        currentLabel = nextLabel;
+
+        ring.style.width = currentHover ? "72px" : "40px";
+        ring.style.height = currentHover ? "72px" : "40px";
+        ring.style.marginLeft = currentHover ? "-16px" : "0px";
+        ring.style.marginTop = currentHover ? "-16px" : "0px";
+        ring.style.background = currentLabel ? "var(--color-neon)" : "transparent";
+
+        if (labelEl) {
+          labelEl.textContent = currentLabel;
+          labelEl.style.display = currentLabel ? "inline-block" : "none";
+        }
       }
     };
 
+    const onMouseLeave = () => {
+      isVisible = false;
+      dot.style.opacity = "0";
+      ring.style.opacity = "0";
+    };
+
     const tick = () => {
-      rx += (mx - rx) * 0.18;
-      ry += (my - ry) * 0.18;
-      if (dotRef.current) dotRef.current.style.transform = `translate3d(${mx - 4}px, ${my - 4}px, 0)`;
-      if (ringRef.current) ringRef.current.style.transform = `translate3d(${rx - 20}px, ${ry - 20}px, 0)`;
+      rx += (mx - rx) * 0.2;
+      ry += (my - ry) * 0.2;
+
+      dot.style.transform = `translate3d(${mx - 4}px, ${my - 4}px, 0)`;
+      ring.style.transform = `translate3d(${rx - 20}px, ${ry - 20}px, 0)`;
+
       raf = requestAnimationFrame(tick);
     };
 
-    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousemove", onMove, { passive: true });
+    document.addEventListener("mouseleave", onMouseLeave);
     raf = requestAnimationFrame(tick);
+
     return () => {
       window.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseleave", onMouseLeave);
       cancelAnimationFrame(raf);
     };
-  }, [visible]);
-
-  if (!visible) return null;
+  }, []);
 
   return (
     <>
       <div
         ref={dotRef}
-        className="pointer-events-none fixed left-0 top-0 z-[9999] h-2 w-2 rounded-full bg-neon mix-blend-difference"
-        style={{ background: "var(--color-neon)" }}
+        aria-hidden
+        className="pointer-events-none fixed left-0 top-0 z-[9999] h-2 w-2 rounded-full opacity-0 will-change-transform"
+        style={{
+          background: "var(--color-neon)",
+          boxShadow: "0 0 10px var(--color-neon)",
+          transition: "opacity 0.2s ease",
+        }}
       />
       <div
         ref={ringRef}
-        className="pointer-events-none fixed left-0 top-0 z-[9998] flex h-10 w-10 items-center justify-center rounded-full border border-neon/60 transition-[width,height,background] duration-200"
+        aria-hidden
+        className="pointer-events-none fixed left-0 top-0 z-[9998] flex h-10 w-10 items-center justify-center rounded-full border opacity-0 will-change-transform"
         style={{
           borderColor: "var(--color-neon)",
-          width: hover ? 72 : 40,
-          height: hover ? 72 : 40,
-          marginLeft: hover ? -16 : 0,
-          marginTop: hover ? -16 : 0,
-          background: label ? "var(--color-neon)" : "transparent",
+          transition: "width 0.2s cubic-bezier(0.16, 1, 0.3, 1), height 0.2s cubic-bezier(0.16, 1, 0.3, 1), margin 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, opacity 0.2s ease",
         }}
       >
-        {label && <span className="font-mono text-[10px] font-medium tracking-widest text-background">{label}</span>}
+        <span
+          ref={labelRef}
+          style={{ display: "none" }}
+          className="font-mono text-[10px] font-semibold tracking-widest text-background"
+        />
       </div>
     </>
   );

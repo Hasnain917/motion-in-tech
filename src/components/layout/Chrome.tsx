@@ -1,38 +1,78 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUp } from "lucide-react";
 
 export function ScrollProgress() {
-  const [p, setP] = useState(0);
+  const barRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    const fn = () => {
-      const h = document.documentElement;
-      const max = h.scrollHeight - h.clientHeight;
-      setP(max > 0 ? (h.scrollTop / max) * 100 : 0);
+    let raf = 0;
+    const bar = barRef.current;
+    if (!bar) return;
+
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        const p = max > 0 ? h.scrollTop / max : 0;
+        bar.style.transform = `scaleX(${p})`;
+      });
     };
-    fn();
-    window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
+
   return (
-    <div className="fixed left-0 right-0 top-0 z-[60] h-px bg-transparent">
-      <div className="h-full bg-neon transition-[width] duration-100" style={{ width: `${p}%`, background: "var(--color-neon)" }} />
+    <div className="fixed left-0 right-0 top-0 z-[60] h-0.5 bg-transparent pointer-events-none">
+      <div
+        ref={barRef}
+        className="h-full w-full origin-left will-change-transform"
+        style={{
+          background: "var(--color-neon)",
+          transform: "scaleX(0)",
+          transition: "transform 0.05s linear",
+        }}
+      />
     </div>
   );
 }
 
 export function BackToTop() {
   const [show, setShow] = useState(false);
+  const showRef = useRef(false);
+
   useEffect(() => {
-    const fn = () => setShow(window.scrollY > 500);
-    window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const next = window.scrollY > 500;
+        if (next !== showRef.current) {
+          showRef.current = next;
+          setShow(next);
+        }
+      });
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
+
   return (
     <button
       aria-label="Back to top"
       data-cursor="hover"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center border border-foreground/20 bg-background/70 backdrop-blur transition-all hover:border-neon hover:text-neon ${
+      className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center border border-foreground/20 bg-background/80 backdrop-blur transition-all duration-300 hover:border-neon hover:text-neon ${
         show ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
       }`}
     >

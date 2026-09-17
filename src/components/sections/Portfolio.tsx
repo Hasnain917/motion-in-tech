@@ -28,6 +28,7 @@ export function Portfolio() {
       // Horizontal pin scroll with 3D rotation entry per card
       const totalScroll = () => track.scrollWidth - window.innerWidth;
 
+      let lastIdx = 0;
       const tween = gsap.to(track, {
         x: () => -totalScroll(),
         ease: "none",
@@ -40,7 +41,10 @@ export function Portfolio() {
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             const idx = Math.min(cards.length - 1, Math.floor(self.progress * cards.length));
-            setActive(idx);
+            if (idx !== lastIdx) {
+              lastIdx = idx;
+              setActive(idx);
+            }
           },
         },
       });

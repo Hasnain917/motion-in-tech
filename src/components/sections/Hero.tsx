@@ -64,18 +64,24 @@ export function Hero() {
         // Ambient float
         gsap.to(cubeRef.current, { y: -16, duration: 3.5, yoyo: true, repeat: -1, ease: "sine.inOut" });
 
-        // Mouse-hover tilt
+        // Mouse-hover tilt (using cached/viewport dimensions to prevent forced reflow)
         const wrap = cubeWrapRef.current;
         const cube = cubeRef.current;
+        let rect = root.current!.getBoundingClientRect();
+        const onEnter = () => {
+          if (root.current) rect = root.current.getBoundingClientRect();
+        };
         const onMove = (e: MouseEvent) => {
-          const r = root.current!.getBoundingClientRect();
-          const x = (e.clientX - r.left) / r.width - 0.5;
-          const y = (e.clientY - r.top) / r.height - 0.5;
+          const w = rect.width || window.innerWidth;
+          const h = rect.height || window.innerHeight;
+          const x = (e.clientX - rect.left) / w - 0.5;
+          const y = (e.clientY - rect.top) / h - 0.5;
           gsap.to(cube, { rotationY: `+=${x * 8}`, rotationX: `-=${y * 8}`, duration: 0.8, ease: "power3.out", overwrite: "auto" });
-          gsap.to(wrap, { x: x * 40, y: y * 40, duration: 0.9, ease: "power3.out" });
+          gsap.to(wrap, { x: x * 35, y: y * 35, duration: 0.9, ease: "power3.out" });
         };
         const onLeave = () => gsap.to(wrap, { x: 0, y: 0, duration: 1, ease: "power3.out" });
-        root.current!.addEventListener("mousemove", onMove);
+        root.current!.addEventListener("mouseenter", onEnter);
+        root.current!.addEventListener("mousemove", onMove, { passive: true });
         root.current!.addEventListener("mouseleave", onLeave);
       }
     }, root);
@@ -110,7 +116,7 @@ export function Hero() {
       >
         <div
           ref={cubeRef}
-          className="relative h-[200px] w-[200px] md:h-[340px] md:w-[340px]"
+          className="relative h-[200px] w-[200px] md:h-[340px] md:w-[340px] will-change-transform"
           style={{ transformStyle: "preserve-3d" }}
         >
           {[
@@ -123,21 +129,20 @@ export function Hero() {
           ].map((t, i) => (
             <div
               key={i}
-              className="absolute inset-0 border-2"
+              className="absolute inset-0 border-2 will-change-transform"
               style={{
                 transform: t,
                 borderColor: "color-mix(in oklab, var(--color-neon) 75%, transparent)",
                 background:
-                  "linear-gradient(135deg, color-mix(in oklab, var(--color-neon) 10%, transparent), color-mix(in oklab, var(--color-background) 30%, transparent) 70%)",
+                  "linear-gradient(135deg, color-mix(in oklab, var(--color-neon) 12%, transparent), color-mix(in oklab, var(--color-background) 70%, transparent) 70%)",
                 boxShadow:
                   "inset 0 0 80px color-mix(in oklab, var(--color-neon) 28%, transparent), 0 0 60px -10px color-mix(in oklab, var(--color-neon) 50%, transparent)",
-                backdropFilter: "blur(2px)",
               }}
             />
           ))}
           {/* Inner core */}
           <div
-            className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl"
+            className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl pointer-events-none"
             style={{
               background: "radial-gradient(circle, var(--color-neon), transparent 70%)",
               transform: "translate3d(-50%, -50%, 0)",
