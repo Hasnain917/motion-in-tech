@@ -85,19 +85,29 @@ export function Navbar() {
       </header>
 
       {/* Mobile menu */}
-      <div className={`fixed inset-0 z-40 bg-background pt-24 transition-opacity md:hidden ${open ? "opacity-100" : "pointer-events-none opacity-0"}`}>
-        <nav className="flex flex-col gap-1 px-6">
+      <div className={`fixed inset-0 z-40 flex flex-col justify-between bg-background px-6 pb-10 pt-28 transition-all duration-300 md:hidden ${open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}>
+        <nav className="flex flex-col gap-1">
           {nav.map((n) => (
             <a
               key={n.id}
               href={n.href}
               onClick={() => setOpen(false)}
-              className="border-b border-border py-5 font-display text-3xl"
+              className="border-b border-border py-4 font-display text-2xl font-bold tracking-tight text-foreground transition-colors hover:text-neon"
             >
               {n.label}
             </a>
           ))}
         </nav>
+        <div className="mt-8 pt-6">
+          <a
+            href={ctaLink}
+            onClick={() => setOpen(false)}
+            className="block w-full border border-neon bg-neon/10 py-3.5 text-center font-mono text-xs uppercase tracking-widest text-neon transition-all hover:bg-neon hover:text-background"
+            style={{ borderColor: "var(--color-neon)", color: "var(--color-neon)" }}
+          >
+            {ctaLabel} →
+          </a>
+        </div>
       </div>
     </>
   );
