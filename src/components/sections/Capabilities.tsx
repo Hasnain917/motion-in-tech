@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "@tanstack/react-router";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -115,11 +116,12 @@ export function Capabilities() {
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {ITEMS.map((it) => (
-            <article
+            <Link
               key={it.k}
+              to="/services"
               data-cap
               data-cursor="hover"
-              className="group relative overflow-hidden border border-border p-6 transition-[border-color,transform,box-shadow] duration-500 hover:-translate-y-1 hover:border-[color:var(--color-neon)] hover:shadow-[0_30px_60px_-25px_color-mix(in_oklab,var(--color-neon)_55%,transparent)] sm:p-8"
+              className="group relative overflow-hidden border border-border p-6 transition-[border-color,transform,box-shadow] duration-500 hover:-translate-y-1 hover:border-[color:var(--color-neon)] hover:shadow-[0_30px_60px_-25px_color-mix(in_oklab,var(--color-neon)_55%,transparent)] sm:p-8 block"
               style={{ background: "var(--color-elevated)", transformStyle: "preserve-3d" }}
             >
               <div data-glow className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -165,7 +167,7 @@ export function Capabilities() {
                 className="pointer-events-none absolute right-3 bottom-3 h-4 w-4 border-r border-b transition-all duration-500 group-hover:h-6 group-hover:w-6"
                 style={{ borderColor: "var(--color-neon)" }}
               />
-            </article>
+            </Link>
           ))}
         </div>
       </div>

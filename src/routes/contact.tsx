@@ -15,13 +15,12 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const budgets = ["< $25k", "$25k – $75k", "$75k – $200k", "$200k+"];
 const services = ["Web", "Mobile", "Design", "ERP", "Consulting"];
 
 function ContactPage() {
   const { data, setData } = useCMS();
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", company: "", budget: budgets[1], service: services[0], message: "" });
+  const [form, setForm] = useState({ name: "", email: "", company: "", service: services[0], message: "" });
 
   return (
     <main>
@@ -100,7 +99,7 @@ function ContactPage() {
                         email: form.email,
                         company: form.company,
                         service: form.service,
-                        budget: form.budget,
+                        budget: "",
                         message: form.message,
                         createdAt: Date.now(),
                         read: false,
@@ -151,24 +150,6 @@ function ContactPage() {
                         style={form.service === s ? { borderColor: "var(--color-neon)", color: "var(--color-neon)" } : undefined}
                       >
                         {s}
-                      </button>
-                    ))}
-                  </div>
-                </Field>
-
-                <Field label="Budget">
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {budgets.map((b) => (
-                      <button
-                        key={b}
-                        type="button"
-                        onClick={() => setForm({ ...form, budget: b })}
-                        className={`border px-4 py-2 font-mono text-[11px] uppercase tracking-widest ${
-                          form.budget === b ? "border-neon text-neon" : "border-border text-muted-foreground hover:border-foreground/40"
-                        }`}
-                        style={form.budget === b ? { borderColor: "var(--color-neon)", color: "var(--color-neon)" } : undefined}
-                      >
-                        {b}
                       </button>
                     ))}
                   </div>

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "@tanstack/react-router";
 import { useCMS } from "@/context/CMSContext";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -58,10 +59,12 @@ export function Services() {
         {services.map((s, i) => {
           const Icon = (Icons as unknown as Record<string, React.ComponentType<{ size?: number; strokeWidth?: number }>>)[s.icon] || Icons.Sparkles;
           return (
-            <article
+            <Link
               key={s.id}
+              to="/services_/$serviceId"
+              params={{ serviceId: s.id }}
               data-cursor="explore"
-              className="group relative flex h-[64vh] max-h-[600px] min-h-[440px] w-[86vw] shrink-0 flex-col overflow-hidden border border-border bg-elevated p-6 transition-colors hover:border-neon/40 md:w-[460px] md:p-8"
+              className="group relative flex h-[64vh] max-h-[600px] min-h-[440px] w-[86vw] shrink-0 flex-col overflow-hidden border border-border bg-elevated p-6 transition-all hover:border-neon/50 hover:-translate-y-1 md:w-[460px] md:p-8 block"
               style={{ background: "var(--color-elevated)" }}
             >
               <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(600px circle at 50% 0%, color-mix(in oklab, var(--color-neon) 14%, transparent), transparent 70%)" }} />
@@ -74,7 +77,7 @@ export function Services() {
               </div>
 
               <div className="relative mt-6 min-h-0 flex-1 overflow-y-auto pr-2">
-                <h3 className="font-display text-3xl font-bold leading-tight tracking-tight md:text-4xl">{s.title}</h3>
+                <h3 className="font-display text-3xl font-bold leading-tight tracking-tight md:text-4xl group-hover:text-neon transition-colors">{s.title}</h3>
                 <p className="mt-3 max-w-md text-sm text-muted-foreground">{s.description}</p>
 
                 <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-1.5">
@@ -87,10 +90,10 @@ export function Services() {
                 </ul>
 
                 <div className="mt-6 inline-flex items-center gap-3 border-b border-foreground/20 pb-1 font-mono text-[11px] uppercase tracking-widest transition-colors group-hover:border-neon group-hover:text-neon">
-                  Explore <span className="transition-transform group-hover:translate-x-1">→</span>
+                  Explore Practice <span className="transition-transform group-hover:translate-x-1">→</span>
                 </div>
               </div>
-            </article>
+            </Link>
           );
         })}
         <div className="w-20 shrink-0" />

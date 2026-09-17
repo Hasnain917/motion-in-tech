@@ -1,11 +1,10 @@
 import { useCMS } from "@/context/CMSContext";
 import { Github, Instagram, Linkedin, Twitter } from "lucide-react";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 
 export function Footer() {
   const { data } = useCMS();
   const s = data.contact.socials;
-  const [logoErr, setLogoErr] = useState(false);
-  const logoUrl = !logoErr ? (data.global.footerLogo || data.global.logo) : "";
 
   return (
     <footer className="noise-bg relative overflow-hidden border-t border-border bg-surface" style={{ background: "var(--color-surface)" }}>
@@ -13,18 +12,11 @@ export function Footer() {
       <div className="relative mx-auto w-full max-w-[1500px] px-6 py-16 md:px-10 md:py-20">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-12 md:gap-12">
           <div className="sm:col-span-2 md:col-span-5">
-            {logoUrl ? (
-              <img
-                src={logoUrl}
-                alt={data.global.siteName}
-                onError={() => setLogoErr(true)}
-                className="h-16 w-auto md:h-20 object-contain"
-              />
-            ) : (
-              <div className="font-display text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
-                {data.global.siteName}<span className="text-neon" style={{ color: "var(--color-neon)" }}>.</span>
-              </div>
-            )}
+            <BrandLogo
+              customLogoUrl={data.global.footerLogo || data.global.logo}
+              siteName={data.global.siteName}
+              variant="footer"
+            />
             <p className="mt-6 max-w-md text-muted-foreground">{data.about.tagline}</p>
             <a
               href={`mailto:${data.contact.email}`}

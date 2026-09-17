@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { useCMS } from "@/context/CMSContext";
 import { PageHero } from "@/components/layout/PageHero";
@@ -29,7 +29,7 @@ function WorkPage() {
         eyebrow="03 — Selected Work"
         title="Recent"
         accent="projects."
-        subtitle="A small selection of the work we are most proud of. Full case studies available on request."
+        subtitle="A small selection of the work we are most proud of. Click any project to view the full case study."
       />
 
       <section className="relative bg-background pb-32">
@@ -57,18 +57,19 @@ function WorkPage() {
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {list.map((p, i) => (
-              <a
+              <Link
                 key={p.id}
-                href="#"
+                to="/work_/$projectId"
+                params={{ projectId: p.id }}
                 data-cursor="view"
-                className="group relative block aspect-[4/3] overflow-hidden border border-border bg-elevated"
+                className="group relative block aspect-[4/3] overflow-hidden border border-border bg-elevated transition-all duration-500 hover:border-neon/50"
                 style={{ background: "var(--color-elevated)" }}
               >
                 <img
                   src={p.image}
                   alt={p.title}
                   loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover opacity-70 transition-all duration-700 group-hover:scale-105 group-hover:opacity-90"
+                  className="absolute inset-0 h-full w-full object-cover opacity-75 transition-all duration-700 group-hover:scale-105 group-hover:opacity-95"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6 md:p-8">
@@ -77,12 +78,12 @@ function WorkPage() {
                       {p.category}
                     </span>
                     <h3 className="mt-2 font-display text-3xl font-bold tracking-tight md:text-4xl">{p.title}</h3>
-                    <p className="mt-2 max-w-md text-sm text-muted-foreground opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                    <p className="mt-2 max-w-md text-sm text-muted-foreground opacity-90 transition-opacity duration-500 group-hover:opacity-100">
                       {p.description}
                     </p>
-                    <div className="mt-3 flex flex-wrap gap-2 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                    <div className="mt-3 flex flex-wrap gap-2">
                       {p.tags.map((t) => (
-                        <span key={t} className="border border-border px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest">
+                        <span key={t} className="border border-border bg-background/60 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest backdrop-blur">
                           {t}
                         </span>
                       ))}
@@ -92,7 +93,7 @@ function WorkPage() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
 

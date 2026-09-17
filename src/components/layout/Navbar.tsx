@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useCMS } from "@/context/CMSContext";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 
 export function Navbar() {
   const { data } = useCMS();
@@ -17,9 +18,6 @@ export function Navbar() {
   const nav = data.header?.navLinks ?? [];
   const ctaLabel = data.header?.ctaLabel ?? "Start a project";
   const ctaLink = data.header?.ctaLink ?? "/contact";
-
-  const [logoErr, setLogoErr] = useState(false);
-  const logoUrl = !logoErr ? (data.global.headerLogo || data.global.logo) : "";
 
   return (
     <>
@@ -45,21 +43,11 @@ export function Navbar() {
       >
         <div className="mx-auto flex w-full max-w-[1500px] items-center justify-between px-6 md:px-10">
           <Link to="/" className="group flex items-center gap-2" data-cursor="hover">
-            {logoUrl ? (
-              <img
-                src={logoUrl}
-                alt={data.global.siteName}
-                onError={() => setLogoErr(true)}
-                className="h-8 w-auto md:h-10 object-contain transition-transform duration-500 group-hover:-translate-y-[2px]"
-              />
-            ) : (
-              <span className="font-display text-2xl font-bold tracking-tight">
-                {data.global.siteName.split(" ").map((w, i, arr) => (
-                  <span key={i} className="inline-block transition-transform duration-500 group-hover:-translate-y-[2px]">{w}{i < arr.length - 1 ? "\u00A0" : ""}</span>
-                ))}
-                <span className="text-neon" style={{ color: "var(--color-neon)" }}>.</span>
-              </span>
-            )}
+            <BrandLogo
+              customLogoUrl={data.global.headerLogo || data.global.logo}
+              siteName={data.global.siteName}
+              variant="header"
+            />
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">

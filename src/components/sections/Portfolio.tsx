@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { useCMS } from "@/context/CMSContext";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -159,10 +160,13 @@ export function Portfolio() {
       <div className="relative mt-10 px-6 md:absolute md:inset-x-0 md:bottom-20 md:top-64 md:mt-0 md:flex md:items-center md:px-0" style={{ perspective: 1600 }}>
         <div ref={trackRef} className="flex flex-col gap-6 md:h-full md:flex-row md:items-center md:gap-8 md:pl-[10vw] md:pr-[10vw]" style={{ transformStyle: "preserve-3d", willChange: "transform" }}>
           {projects.map((p, i) => (
-            <article
+            <Link
               key={p.id}
+              to="/work_/$projectId"
+              params={{ projectId: p.id }}
               data-card
-              className="group relative aspect-[4/5] w-full shrink-0 overflow-hidden border border-border bg-elevated md:aspect-auto md:h-full md:max-h-[560px] md:w-[52vw] lg:w-[44vw]"
+              data-cursor="view"
+              className="group relative aspect-[4/5] w-full shrink-0 overflow-hidden border border-border bg-elevated md:aspect-auto md:h-full md:max-h-[560px] md:w-[52vw] lg:w-[44vw] block"
               style={{ background: "var(--color-elevated)", transformStyle: "preserve-3d" }}
             >
               <div className="absolute inset-0 overflow-hidden">
@@ -197,15 +201,15 @@ export function Portfolio() {
                   ))}
                 </div>
               </div>
-            </article>
+            </Link>
           ))}
 
           {/* Tail card: archive CTA */}
-          <a
-            href="/work"
+          <Link
+            to="/work"
             data-card
             data-cursor="hover"
-            className="relative flex aspect-[4/5] w-full shrink-0 flex-col items-start justify-end border border-dashed border-neon p-8 md:aspect-auto md:h-full md:max-h-[560px] md:w-[36vw] md:p-10"
+            className="relative flex aspect-[4/5] w-full shrink-0 flex-col items-start justify-end border border-dashed border-neon p-8 md:aspect-auto md:h-full md:max-h-[560px] md:w-[36vw] md:p-10 block"
             style={{ borderColor: "var(--color-neon)", transformStyle: "preserve-3d" }}
           >
             <div data-num className="font-mono text-[11px] uppercase tracking-[0.3em] text-neon" style={{ color: "var(--color-neon)" }}>
@@ -214,7 +218,7 @@ export function Portfolio() {
             <h3 data-title className="mt-4 font-display text-4xl font-bold leading-[0.9] tracking-tighter sm:text-5xl md:text-7xl">
               View<br/>full<br/>archive →
             </h3>
-          </a>
+          </Link>
         </div>
       </div>
 
