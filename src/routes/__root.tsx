@@ -24,7 +24,7 @@ function NotFoundComponent() {
         <div className="font-display text-[18vw] font-bold leading-none tracking-tighter text-foreground/10">404</div>
         <h2 className="-mt-12 font-display text-3xl font-bold tracking-tight">Page not found.</h2>
         <p className="mt-3 text-sm text-muted-foreground">The page you&apos;re looking for has drifted into the void.</p>
-        <Link to="/" data-cursor="hover" className="mt-8 inline-block border border-neon px-6 py-3 font-mono text-[11px] uppercase tracking-widest text-neon hover:bg-neon hover:text-background" style={{ borderColor: "var(--color-neon)", color: "var(--color-neon)" }}>
+        <Link to="/" data-cursor="hover" className="btn-neon-hover mt-8 inline-block border border-neon px-6 py-3 font-mono text-[11px] uppercase tracking-widest text-neon">
           Go home →
         </Link>
       </div>
@@ -40,8 +40,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <h1 className="font-display text-3xl font-bold">Something glitched.</h1>
         <p className="mt-2 text-sm text-muted-foreground">Try again or head home.</p>
         <div className="mt-6 flex justify-center gap-3">
-          <button onClick={reset} className="border border-neon px-5 py-2 font-mono text-[11px] uppercase tracking-widest text-neon" style={{ borderColor: "var(--color-neon)", color: "var(--color-neon)" }}>Try again</button>
-          <a href="/" className="border border-foreground/20 px-5 py-2 font-mono text-[11px] uppercase tracking-widest">Home</a>
+          <button onClick={reset} className="btn-neon-hover border border-neon px-5 py-2 font-mono text-[11px] uppercase tracking-widest text-neon">Try again</button>
+          <a href="/" className="border border-foreground/20 px-5 py-2 font-mono text-[11px] uppercase tracking-widest hover:border-neon hover:text-neon transition-colors">Home</a>
         </div>
       </div>
     </div>

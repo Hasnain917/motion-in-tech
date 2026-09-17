@@ -237,8 +237,8 @@ export function Hero() {
               data-anim="cta"
               data-cursor="hover"
               href={data.hero.cta1.link}
-              className="liquid-fill group inline-flex items-center gap-3 border px-5 py-3.5 font-mono text-[10px] uppercase tracking-widest sm:px-7 sm:py-4 sm:text-[11px]"
-              style={{ borderColor: "var(--color-neon)", color: "var(--color-neon)" }}
+              className="liquid-fill group inline-flex items-center gap-3 border border-neon px-5 py-3.5 font-mono text-[10px] uppercase tracking-widest text-neon sm:px-7 sm:py-4 sm:text-[11px]"
+              style={{ borderColor: "var(--color-neon)" }}
             >
               {data.hero.cta1.label}
               <span className="transition-transform group-hover:translate-x-1">→</span>

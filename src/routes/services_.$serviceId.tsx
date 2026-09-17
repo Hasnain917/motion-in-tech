@@ -27,7 +27,7 @@ export function ServiceDetailPage() {
       <main className="flex min-h-[70vh] flex-col items-center justify-center bg-background px-6 text-center">
         <h1 className="font-display text-4xl font-bold">Service Not Found</h1>
         <p className="mt-3 text-muted-foreground">The practice area you requested is unavailable.</p>
-        <Link to="/services" className="mt-8 inline-flex items-center gap-2 border border-neon px-6 py-3 font-mono text-xs uppercase tracking-widest text-neon hover:bg-neon hover:text-background" style={{ borderColor: "var(--color-neon)", color: "var(--color-neon)" }}>
+        <Link to="/services" className="btn-neon-hover mt-8 inline-flex items-center gap-2 border border-neon px-6 py-3 font-mono text-xs uppercase tracking-widest text-neon">
           <ArrowLeft size={14} /> Back to all services
         </Link>
       </main>

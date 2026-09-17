@@ -19,7 +19,7 @@ export function CTABanner() {
             href={`mailto:${data.contact.email}`}
             data-cursor="hover"
             className="liquid-fill inline-flex items-center gap-3 border border-neon px-8 py-5 font-mono text-xs uppercase tracking-widest text-neon"
-            style={{ borderColor: "var(--color-neon)", color: "var(--color-neon)" }}
+            style={{ borderColor: "var(--color-neon)" }}
           >
             Start a project →
           </a>

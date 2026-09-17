@@ -164,6 +164,7 @@
     position: relative;
     overflow: hidden;
     isolation: isolate;
+    transition: color 0.3s ease, border-color 0.3s ease;
   }
   .liquid-fill::before {
     content: "";
@@ -175,7 +176,27 @@
     z-index: -1;
   }
   .liquid-fill:hover::before { transform: translateY(0); }
-  .liquid-fill:hover { color: var(--color-background) !important; border-color: var(--color-neon); }
+  .liquid-fill:hover,
+  .liquid-fill:hover *,
+  .liquid-fill:hover span,
+  .liquid-fill:hover svg {
+    color: var(--color-background) !important;
+    stroke: var(--color-background) !important;
+    border-color: var(--color-neon);
+  }
+
+  /* Global hover helper for neon-bordered buttons */
+  .btn-neon-hover {
+    border-color: var(--color-neon);
+    color: var(--color-neon);
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+  .btn-neon-hover:hover,
+  .btn-neon-hover:hover * {
+    background-color: var(--color-neon) !important;
+    color: var(--color-background) !important;
+    stroke: var(--color-background) !important;
+  }
 
   @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }

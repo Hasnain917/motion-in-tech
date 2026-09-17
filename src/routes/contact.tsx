@@ -168,8 +168,7 @@ function ContactPage() {
                 <button
                   type="submit"
                   data-cursor="hover"
-                  className="inline-flex items-center gap-3 border border-neon px-8 py-5 font-mono text-xs uppercase tracking-widest text-neon transition-colors hover:bg-neon hover:text-background"
-                  style={{ borderColor: "var(--color-neon)", color: "var(--color-neon)" }}
+                  className="btn-neon-hover inline-flex items-center gap-3 border border-neon px-8 py-5 font-mono text-xs uppercase tracking-widest text-neon"
                 >
                   Send message →
                 </button>

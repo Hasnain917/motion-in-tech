@@ -102,8 +102,7 @@ export function Navbar() {
           <a
             href={ctaLink}
             onClick={() => setOpen(false)}
-            className="block w-full border border-neon bg-neon/10 py-3.5 text-center font-mono text-xs uppercase tracking-widest text-neon transition-all hover:bg-neon hover:text-background"
-            style={{ borderColor: "var(--color-neon)", color: "var(--color-neon)" }}
+            className="btn-neon-hover block w-full border border-neon bg-neon/10 py-3.5 text-center font-mono text-xs uppercase tracking-widest text-neon"
           >
             {ctaLabel} →
           </a>

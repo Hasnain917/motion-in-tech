@@ -93,8 +93,7 @@ export function CookieBar() {
       <p className="text-[11px] leading-snug text-muted-foreground sm:text-xs">We use cookies to elevate your experience. Continuing implies consent.</p>
       <button
         data-cursor="hover"
-        className="shrink-0 border border-neon px-3 py-1.5 font-mono text-[10px] tracking-widest text-neon hover:bg-neon hover:text-background sm:px-4 sm:py-2"
-        style={{ borderColor: "var(--color-neon)", color: "var(--color-neon)" }}
+        className="btn-neon-hover shrink-0 border border-neon px-3 py-1.5 font-mono text-[10px] tracking-widest text-neon sm:px-4 sm:py-2"
         onClick={() => { localStorage.setItem("mit-cookie-ok", "1"); setShow(false); }}
       >
         OK
