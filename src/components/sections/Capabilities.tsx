@@ -78,7 +78,7 @@ export function Capabilities() {
   }, []);
 
   return (
-    <section ref={root} className="relative overflow-hidden bg-background py-32">
+    <section ref={root} className="relative overflow-hidden bg-background py-[80px] md:py-32">
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.06]"
         style={{
@@ -98,18 +98,18 @@ export function Capabilities() {
       />
 
       <div className="relative mx-auto w-full max-w-[1500px] px-6 md:px-10">
-        <div className="mb-12 flex flex-col items-start justify-between gap-6 md:mb-16 md:flex-row md:items-end md:gap-8">
+        <div className="mb-12 flex flex-col items-center justify-between gap-6 text-center md:mb-16 md:flex-row md:items-end md:gap-8 md:text-left">
           <div>
-            <div className="mb-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
+            <div className="mb-4 flex items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground md:justify-start">
               <span className="inline-block h-px w-12" style={{ background: "var(--color-neon)" }} />
               04 — Capabilities
             </div>
             <h2 className="font-display text-4xl font-bold tracking-tighter sm:text-5xl md:text-7xl">
-              Built for the<br />
+              Built for the<br className="hidden md:inline" />{" "}
               <span style={{ color: "var(--color-neon)" }}>impossible.</span>
             </h2>
           </div>
-          <p className="max-w-sm text-sm text-muted-foreground">
+          <p className="mx-auto max-w-sm text-sm text-muted-foreground md:mx-0">
             Hover any card — every surface responds. Six disciplines, one team, zero handoffs.
           </p>
         </div>

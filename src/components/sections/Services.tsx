@@ -39,23 +39,23 @@ export function Services() {
   }, [services.length]);
 
   return (
-    <section id="services" ref={root} className="relative overflow-hidden bg-background py-20 md:py-24">
-      <div className="mx-auto mb-10 flex w-full max-w-[1500px] items-end justify-between px-6 md:mb-14 md:px-10">
+    <section id="services" ref={root} className="relative overflow-hidden bg-background py-[80px] md:py-32">
+      <div className="mx-auto mb-10 flex w-full max-w-[1500px] flex-col items-center justify-between gap-4 px-6 text-center md:mb-14 md:flex-row md:items-end md:px-10 md:text-left">
         <div>
-          <div className="mb-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
+          <div className="mb-4 flex items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground md:justify-start">
             <span className="inline-block h-px w-12 bg-neon" style={{ background: "var(--color-neon)" }} />
             01 — Capabilities
           </div>
-          <h2 className="font-display text-5xl font-bold tracking-tight md:text-7xl">
+          <h2 className="font-display text-4xl font-bold tracking-tight sm:text-5xl md:text-7xl">
             What we do<span className="text-neon" style={{ color: "var(--color-neon)" }}>.</span>
           </h2>
         </div>
-        <p className="hidden max-w-sm text-muted-foreground md:block">
+        <p className="max-w-sm text-sm text-muted-foreground md:text-base">
           Five disciplines. One studio. Engineered to ship the products our clients are remembered for.
         </p>
       </div>
 
-      <div ref={track} className="flex gap-6 px-6 will-change-transform md:gap-8 md:px-10">
+      <div ref={track} className="flex flex-col gap-6 px-6 md:flex-row md:gap-8 md:px-10 md:will-change-transform">
         {services.map((s, i) => {
           const Icon = (Icons as unknown as Record<string, React.ComponentType<{ size?: number; strokeWidth?: number }>>)[s.icon] || Icons.Sparkles;
           return (
@@ -64,7 +64,7 @@ export function Services() {
               to="/services/$serviceId"
               params={{ serviceId: s.id }}
               data-cursor="explore"
-              className="group relative flex h-[64vh] max-h-[600px] min-h-[440px] w-[86vw] shrink-0 flex-col overflow-hidden border border-border bg-elevated p-6 transition-all hover:border-neon/50 hover:-translate-y-1 md:w-[460px] md:p-8 block"
+              className="group relative flex w-full flex-col overflow-hidden border border-border bg-elevated p-6 transition-all hover:border-neon/50 hover:-translate-y-1 sm:p-8 md:h-[64vh] md:max-h-[600px] md:min-h-[440px] md:w-[460px] md:shrink-0 block"
               style={{ background: "var(--color-elevated)" }}
             >
               <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(600px circle at 50% 0%, color-mix(in oklab, var(--color-neon) 14%, transparent), transparent 70%)" }} />
@@ -76,11 +76,11 @@ export function Services() {
                 <span className="font-mono text-[11px] tracking-widest text-muted-foreground">0{i + 1}</span>
               </div>
 
-              <div className="relative mt-6 min-h-0 flex-1 overflow-y-auto pr-2">
-                <h3 className="font-display text-3xl font-bold leading-tight tracking-tight md:text-4xl group-hover:text-neon transition-colors">{s.title}</h3>
-                <p className="mt-3 max-w-md text-sm text-muted-foreground">{s.description}</p>
+              <div className="relative mt-6 min-h-0 flex-1 md:overflow-y-auto md:pr-2">
+                <h3 className="font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-4xl group-hover:text-neon transition-colors">{s.title}</h3>
+                <p className="mt-3 text-sm text-muted-foreground">{s.description}</p>
 
-                <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-1.5">
+                <ul className="mt-5 grid grid-cols-1 gap-1.5 sm:grid-cols-2 sm:gap-x-4">
                   {s.subServices.map((ss) => (
                     <li key={ss} className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-foreground/80">
                       <span className="h-1 w-1 rounded-full bg-neon" style={{ background: "var(--color-neon)" }} />
@@ -96,7 +96,7 @@ export function Services() {
             </Link>
           );
         })}
-        <div className="w-20 shrink-0" />
+        <div className="hidden w-20 shrink-0 md:block" />
       </div>
     </section>
   );

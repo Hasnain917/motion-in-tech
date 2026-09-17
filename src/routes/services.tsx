@@ -30,7 +30,7 @@ function ServicesPage() {
         subtitle="Five disciplines. One studio. Click any practice area to explore our capabilities and architecture stack."
       />
 
-      <section className="relative bg-background pb-32">
+      <section className="relative bg-background pb-[80px] md:pb-32">
         <div className="mx-auto w-full max-w-[1500px] px-6 md:px-10">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {services.map((s, i) => {

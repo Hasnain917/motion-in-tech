@@ -44,25 +44,25 @@ export function ServiceDetailPage() {
   return (
     <main className="bg-background text-foreground">
       {/* Service Hero */}
-      <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28 border-b border-border">
+      <section className="relative overflow-hidden border-b border-border pb-[80px] pt-36 md:pb-28 md:pt-44">
         <div className="grid-bg pointer-events-none absolute inset-0 opacity-30" />
         <div
           className="pointer-events-none absolute left-10 top-20 h-96 w-96 rounded-full blur-[140px] opacity-25"
           style={{ background: "var(--color-neon)" }}
         />
 
-        <div className="relative mx-auto w-full max-w-[1500px] px-6 md:px-10">
+        <div className="relative mx-auto w-full max-w-[1500px] px-6 text-center md:px-10 md:text-left">
           <Link
             to="/services"
             data-cursor="hover"
-            className="group mb-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground hover:text-neon transition-colors"
+            className="group mb-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-neon"
           >
             <ArrowLeft size={14} className="transition-transform group-hover:-translate-x-1" /> Back to Capabilities
           </Link>
 
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col items-center gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
-              <div className="mb-6 flex items-center gap-3">
+              <div className="mb-6 flex items-center justify-center gap-3 md:justify-start">
                 <div className="flex h-12 w-12 items-center justify-center border border-neon bg-neon/10 text-neon" style={{ borderColor: "var(--color-neon)", color: "var(--color-neon)" }}>
                   <IconComponent size={22} strokeWidth={1.5} />
                 </div>
@@ -70,19 +70,19 @@ export function ServiceDetailPage() {
                   Practice Area 0{serviceIndex + 1}
                 </span>
               </div>
-              <h1 className="font-display text-5xl font-bold tracking-tight sm:text-6xl md:text-8xl">
+              <h1 className="font-display text-4xl font-bold tracking-tight sm:text-6xl md:text-8xl">
                 {service.title}<span className="text-neon" style={{ color: "var(--color-neon)" }}>.</span>
               </h1>
-              <p className="mt-6 text-lg text-muted-foreground md:text-2xl max-w-2xl">
+              <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg md:mx-0 md:text-2xl">
                 {service.description}
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
               <Link
                 to="/contact"
                 data-cursor="hover"
-                className="inline-flex items-center gap-2 border border-neon bg-neon px-8 py-4 font-mono text-xs uppercase tracking-widest text-background font-semibold hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 border border-neon bg-neon px-8 py-4 font-mono text-xs uppercase tracking-widest font-semibold text-background transition-opacity hover:opacity-90"
                 style={{ background: "var(--color-neon)", borderColor: "var(--color-neon)" }}
               >
                 Start a {service.title} Project <ArrowUpRight size={14} />

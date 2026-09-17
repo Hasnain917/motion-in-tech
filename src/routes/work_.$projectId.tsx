@@ -39,34 +39,34 @@ export function ProjectDetailPage() {
   return (
     <main className="bg-background text-foreground">
       {/* Project Hero */}
-      <section className="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28 border-b border-border">
+      <section className="relative overflow-hidden border-b border-border pb-[80px] pt-36 md:pb-28 md:pt-44">
         <div className="grid-bg pointer-events-none absolute inset-0 opacity-30" />
         <div
           className="pointer-events-none absolute right-10 top-20 h-96 w-96 rounded-full blur-[140px] opacity-25"
           style={{ background: "var(--color-neon)" }}
         />
 
-        <div className="relative mx-auto w-full max-w-[1500px] px-6 md:px-10">
+        <div className="relative mx-auto w-full max-w-[1500px] px-6 text-center md:px-10 md:text-left">
           <Link
             to="/work"
             data-cursor="hover"
-            className="group mb-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground hover:text-neon transition-colors"
+            className="group mb-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-neon"
           >
             <ArrowLeft size={14} className="transition-transform group-hover:-translate-x-1" /> Back to Selected Work
           </Link>
 
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col items-center gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
-              <div className="mb-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-neon" style={{ color: "var(--color-neon)" }}>
+              <div className="mb-4 flex items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-neon md:justify-start" style={{ color: "var(--color-neon)" }}>
                 <span className="inline-block h-px w-8 bg-neon" style={{ background: "var(--color-neon)" }} />
                 Case Study · {project.category}
               </div>
-              <h1 className="font-display text-5xl font-bold tracking-tight sm:text-6xl md:text-8xl">
+              <h1 className="font-display text-4xl font-bold tracking-tight sm:text-6xl md:text-8xl">
                 {project.title}<span className="text-neon" style={{ color: "var(--color-neon)" }}>.</span>
               </h1>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
               <a
                 href="#details"
                 data-cursor="hover"
@@ -77,7 +77,7 @@ export function ProjectDetailPage() {
               <Link
                 to="/contact"
                 data-cursor="hover"
-                className="inline-flex items-center gap-2 border border-neon bg-neon px-6 py-3.5 font-mono text-xs uppercase tracking-widest text-background font-semibold hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 border border-neon bg-neon px-6 py-3.5 font-mono text-xs uppercase tracking-widest font-semibold text-background transition-opacity hover:opacity-90"
                 style={{ background: "var(--color-neon)", borderColor: "var(--color-neon)" }}
               >
                 Start Similar Project <ArrowUpRight size={14} />

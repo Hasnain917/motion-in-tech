@@ -17,34 +17,34 @@ export function Testimonials() {
   const t = items[idx];
 
   return (
-    <section className="relative overflow-hidden border-y border-border bg-surface py-32" style={{ background: "var(--color-surface)" }}>
+    <section className="relative overflow-hidden border-y border-border bg-surface py-[80px] md:py-32" style={{ background: "var(--color-surface)" }}>
       <div className="grid-bg pointer-events-none absolute inset-0 opacity-30" />
       <div className="relative mx-auto w-full max-w-[1500px] px-6 md:px-10">
-        <div className="mb-16 flex items-end justify-between">
+        <div className="mb-12 flex items-center justify-center text-center md:mb-16 md:justify-start md:text-left">
           <div>
-            <div className="mb-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
+            <div className="mb-4 flex items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground md:justify-start">
               <span className="inline-block h-px w-12 bg-neon" style={{ background: "var(--color-neon)" }} />
               04 — Voices
             </div>
-            <h2 className="font-display text-5xl font-bold tracking-tight md:text-7xl">
+            <h2 className="font-display text-4xl font-bold tracking-tight sm:text-5xl md:text-7xl">
               Trusted by founders & operators<span className="text-neon" style={{ color: "var(--color-neon)" }}>.</span>
             </h2>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-[1fr_320px] md:items-end">
-          <blockquote key={t.id} className="font-display text-3xl font-medium leading-snug tracking-tight text-balance md:text-5xl">
+        <div className="grid grid-cols-1 gap-10 text-center md:grid-cols-[1fr_320px] md:items-end md:gap-12 md:text-left">
+          <blockquote key={t.id} className="font-display text-2xl font-medium leading-snug tracking-tight text-balance sm:text-3xl md:text-5xl">
             <span className="text-neon" style={{ color: "var(--color-neon)" }}>“</span>
             {t.quote}
             <span className="text-neon" style={{ color: "var(--color-neon)" }}>”</span>
           </blockquote>
 
-          <div className="flex items-center gap-4 border-l border-border pl-6 md:flex-col md:items-start">
+          <div className="flex flex-col items-center justify-center gap-4 md:items-start md:border-l md:border-border md:pl-6">
             <img src={t.photo} alt={t.name} className="h-14 w-14 rounded-full object-cover" loading="lazy" />
             <div>
               <div className="font-display text-lg">{t.name}</div>
               <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">{t.role} · {t.company}</div>
-              <div className="mt-2 flex gap-1">
+              <div className="mt-2 flex justify-center gap-1 md:justify-start">
                 {Array.from({ length: t.rating }).map((_, i) => (
                   <Star key={i} size={12} className="fill-neon stroke-none" style={{ fill: "var(--color-neon)" }} />
                 ))}
@@ -53,7 +53,7 @@ export function Testimonials() {
           </div>
         </div>
 
-        <div className="mt-16 flex gap-2">
+        <div className="mt-12 flex justify-center gap-2 md:mt-16 md:justify-start">
           {items.map((_, i) => (
             <button
               key={i}

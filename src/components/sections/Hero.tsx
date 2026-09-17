@@ -205,13 +205,13 @@ export function Hero() {
 
       <div className="grid-bg pointer-events-none absolute inset-0 opacity-30" />
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1500px] flex-col justify-end px-5 pb-32 pt-28 sm:px-6 md:px-10 md:pb-36 md:pt-32">
-        <div data-anim="eyebrow" className="mb-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:mb-8 md:text-[11px]">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1500px] flex-col justify-end px-5 pb-[100px] pt-28 sm:px-6 md:px-10 md:pb-36 md:pt-32">
+        <div data-anim="eyebrow" className="mb-6 flex items-center justify-center gap-3 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:mb-8 md:justify-start md:text-[11px]">
           <span className="inline-block h-px w-8 bg-neon md:w-12" style={{ background: "var(--color-neon)" }} />
           A software studio · est. {data.about.founded}
         </div>
 
-        <h1 className="font-display text-[clamp(2.75rem,11vw,11rem)] font-bold leading-[0.88] tracking-[-0.04em] text-balance md:leading-[0.85]">
+        <h1 className="text-center font-display text-[clamp(2.75rem,11vw,11rem)] font-bold leading-[0.88] tracking-[-0.04em] text-balance md:text-left md:leading-[0.85]">
           {words.map((w, i) => (
             <span key={i} data-anim="word" className="reveal-word mr-[0.18em]">
               <span>
@@ -228,11 +228,11 @@ export function Hero() {
           ))}
         </h1>
 
-        <div className="mt-8 flex flex-col gap-6 md:mt-12 md:flex-row md:items-end md:justify-between md:gap-8">
-          <p data-anim="sub" className="max-w-md text-balance text-base text-muted-foreground sm:text-lg md:text-xl">
+        <div className="mt-8 flex flex-col items-center gap-6 text-center md:mt-12 md:flex-row md:items-end md:justify-between md:gap-8 md:text-left">
+          <p data-anim="sub" className="mx-auto max-w-md text-balance text-base text-muted-foreground sm:text-lg md:mx-0 md:text-xl">
             {data.hero.subHeadline}
           </p>
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
             <a
               data-anim="cta"
               data-cursor="hover"

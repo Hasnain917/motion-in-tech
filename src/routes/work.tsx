@@ -32,9 +32,9 @@ function WorkPage() {
         subtitle="A small selection of the work we are most proud of. Click any project to view the full case study."
       />
 
-      <section className="relative bg-background pb-32">
+      <section className="relative bg-background pb-[80px] md:pb-32">
         <div className="mx-auto w-full max-w-[1500px] px-6 md:px-10">
-          <div className="mb-10 flex flex-wrap items-center gap-2 border-b border-border pb-6">
+          <div className="mb-10 flex flex-wrap items-center justify-center gap-2 border-b border-border pb-6 md:justify-start">
             {categories.map((c) => (
               <button
                 key={c}

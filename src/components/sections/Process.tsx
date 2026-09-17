@@ -32,14 +32,14 @@ export function Process() {
   }, [data.process]);
 
   return (
-    <section id="process" ref={root} className="relative bg-background py-32">
+    <section id="process" ref={root} className="relative bg-background py-[80px] md:py-32">
       <div className="mx-auto w-full max-w-[1500px] px-6 md:px-10">
-        <div className="mb-20 max-w-3xl">
-          <div className="mb-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
+        <div className="mb-14 max-w-3xl text-center md:mb-20 md:text-left">
+          <div className="mb-4 flex items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground md:justify-start">
             <span className="inline-block h-px w-12 bg-neon" style={{ background: "var(--color-neon)" }} />
             02 — How we work
           </div>
-          <h2 className="font-display text-5xl font-bold tracking-tight md:text-7xl">
+          <h2 className="font-display text-4xl font-bold tracking-tight sm:text-5xl md:text-7xl">
             A process engineered for ambitious teams<span className="text-neon" style={{ color: "var(--color-neon)" }}>.</span>
           </h2>
         </div>

@@ -31,9 +31,9 @@ function ContactPage() {
         subtitle="Tell us about your project. We reply within one business day with next steps or a friendly no."
       />
 
-      <section className="relative bg-background pb-32">
+      <section className="relative bg-background pb-[80px] md:pb-32">
         <div className="mx-auto grid w-full max-w-[1500px] grid-cols-1 gap-16 px-6 md:grid-cols-12 md:px-10">
-          <aside className="md:col-span-4 md:row-start-1">
+          <aside className="text-center md:col-span-4 md:row-start-1 md:text-left">
             <div className="space-y-10">
               <div className="border-t border-border pt-6">
                 <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">Email</div>
@@ -52,11 +52,11 @@ function ContactPage() {
               </div>
               <div className="border-t border-border pt-6">
                 <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">Studio</div>
-                <div className="mt-2 max-w-xs font-display text-xl">{data.contact.address}</div>
+                <div className="mx-auto mt-2 max-w-xs font-display text-xl md:mx-0">{data.contact.address}</div>
               </div>
               <div className="border-t border-border pt-6">
                 <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">Elsewhere</div>
-                <div className="mt-3 flex flex-wrap gap-2">
+                <div className="mt-3 flex flex-wrap justify-center gap-2 md:justify-start">
                   {Object.entries(data.contact.socials).map(([k, v]) =>
                     v ? (
                       <a

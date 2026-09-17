@@ -105,7 +105,7 @@ export function Portfolio() {
   }, [projects.length]);
 
   return (
-    <section id="work" ref={root} className="relative overflow-hidden bg-background md:h-screen">
+    <section id="work" ref={root} className="relative overflow-hidden bg-background py-[80px] md:h-screen md:py-0">
       {/* Background grid + radial */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "linear-gradient(var(--color-foreground) 1px, transparent 1px), linear-gradient(90deg, var(--color-foreground) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
       <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse at 70% 30%, color-mix(in oklab, var(--color-neon) 12%, transparent), transparent 60%)" }} />
@@ -138,14 +138,14 @@ export function Portfolio() {
       </div>
 
       {/* Header */}
-      <div className="relative z-20 mx-auto w-full max-w-[1500px] px-6 pt-24 md:absolute md:left-0 md:right-0 md:top-0 md:px-10 md:pt-14">
-        <div className="flex items-end justify-between">
+      <div className="relative z-20 mx-auto w-full max-w-[1500px] px-6 text-center md:absolute md:left-0 md:right-0 md:top-0 md:px-10 md:pt-14 md:text-left">
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <div className="mb-3 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
+            <div className="mb-3 flex items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground md:justify-start">
               <span className="inline-block h-px w-12 bg-neon" style={{ background: "var(--color-neon)" }} />
               03 — Selected Work
             </div>
-            <h2 className="font-display text-4xl font-bold leading-none tracking-tighter md:text-6xl">
+            <h2 className="font-display text-4xl font-bold leading-none tracking-tighter sm:text-5xl md:text-6xl">
               Recent projects<span style={{ color: "var(--color-neon)" }}>.</span>
             </h2>
           </div>
